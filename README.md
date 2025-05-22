@@ -160,9 +160,9 @@ To handle specific outcomes depending on object types, I’ve used the **Visitor
 To make the physics in this game feel real and responsive, every object that takes part in a collision — whether it's a bird, a block, or a pig — needs a few things:
 - A **physics body** (which can be either static or dynamic)
 - A **health value**
-- A **material type**, like wood, glass, or stone
+- A **material type**, like wood, glass, or stone if a block
 
-When two objects collide, Box2D handles the physics and gives us detailed information about what happened during the impact. This info is what we use to figure out how much damage each object should take.
+When two objects collide, Box2D handles the physics and gives us detailed information about what happened during the impact. This info is what I use to figure out how much damage each object should take.
 
 ---
 
@@ -194,20 +194,20 @@ This makes every bird–block interaction feel unique and satisfying.
 
 ---
 
-#### How It Works Under the Hood
+#### 🛠️ How It Works Under the Hood
 
 Here’s the basic flow:
 
 1. **Get Collision Info**
-   - We grab data from Box2D (using the `b2WorldManifold`) to understand where and how the collision happened.
+   - I grab data from Box2D (using the `b2WorldManifold`) to understand where and how the collision happened.
 
 2. **Check the Block’s Type**
-   - Based on whether it's made of **wood, glass, or stone**, we apply a different damage threshold and multiplier.
+   - Based on whether it's made of **wood, glass, or stone**, I apply a different damage threshold and multiplier.
 
 3. **Apply Damage**
    - If the collision impulse is big enough:
-     - We calculate how much damage to apply.
-     - If that damage is greater than the block’s remaining health, we reduce its life or destroy it.
+     - I calculate how much damage to apply.
+     - If that damage is greater than the block’s remaining health, I reduce its life or destroy it.
      - For fragile materials like glass, even small impacts can be devastating.
 
 ---
