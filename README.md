@@ -50,11 +50,11 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
 - The second part provides a brief overview of the code architecture used in creating this demo.
 
 
-## 📘 Index – Physics
+## 📘 Index
 
-1. [Physics](#physics-of-angry-birds)
+1. Physics
    - [Box2D](#a-box2d)
-   - [Collision, Impulse & Callbacks](#collision-impulse--callbacks)
+   - [Collisions in Box2d](#b-collisions-in-box2d)
    - [Birds](#birds)
    - [Particles](#particles)
 
@@ -118,3 +118,107 @@ Here is a basic example of creating a physics body for a rectangular block match
 
 
 For detailed Box2D documentation, see [Box2D official docs](https://box2d.org/doc_version_2_4/).
+
+
+## (b) Collisions in Box2D
+
+In Box2D, collisions are central to simulating realistic interactions between objects. When two physics bodies (like birds and blocks) come into contact, Box2D calculates forces and responses based on their physical properties.
+
+### 🔑 Key Concepts 
+
+1. **Collision Shapes**  
+   Each body is attached to a shape (circle, polygon, edge, etc.) which defines its collision boundary.
+
+2. **Fixtures**  
+   Fixtures connect shapes to bodies and define physical properties such as:
+   - **Density** – Affects mass
+   - **Friction** – Affects sliding resistance
+   - **Restitution** – Affects bounciness
+
+3. **Collision Detection**  
+- Box2D first filters out objects that are too far apart to collide. Then, for objects that are close enough, it performs precise checks to find exact contact points and calculate collision details needed for realistic interactions.
+
+4. **Collision Callbacks**  
+   Custom collision responses are handled through:
+   - `BeginContact()`: Called when contact starts
+   - `EndContact()`: When contact ends
+   - `PreSolve()`: Allows modifying contact before it resolves
+   - `PostSolve()`: Used to analyze the results (like impulses)
+
+---
+
+### 🧩 Custom Collision Handling
+
+In this project, I’ve implemented a custom collision system using a class `AngryBirdsContactListener`, derived from `b2ContactListener`. It allows me to define custom behaviors when specific objects interact (e.g., birds hitting blocks or pigs).
+
+To handle specific outcomes depending on object types, I’ve used the **Visitor Pattern**. This enables defining different behavior depending on both objects in a collision — for example, a Blue Bird colliding with a Glass Block vs. a Stone Block.
+
+---
+
+### 🛠️ Collision Processing
+
+To make the physics in this game feel real and responsive, every object that takes part in a collision — whether it's a bird, a block, or a pig — needs a few things:
+- A **physics body** (which can be either static or dynamic)
+- A **health value**
+- A **material type**, like wood, glass, or stone
+
+When two objects collide, Box2D handles the physics and gives us detailed information about what happened during the impact. This info is what we use to figure out how much damage each object should take.
+
+---
+
+#### 📊 Using Impulse to Calculate Damage
+
+One of the most important things Box2D gives us during a collision is the **normal impulse** — basically, how hard two objects hit each other.
+
+We also get:
+- **Tangential impulse**, which tells us how much sliding happened
+- **Contact points**, which show exactly where the objects touched
+
+But it’s the **normal impulse** that really matters when it comes to applying damage. The harder the hit, the bigger the impulse — and the more damage we apply.
+
+---
+
+#### 🟦 Example: Blue Bird Hits a Block
+
+Let’s walk through a common scenario: a **Blue Bird** hits a **block**. Different block types take damage differently:
+- **Glass** breaks easily, so it has a **high damage multiplier**
+- **Wood** is average
+- **Stone** is tough, so it needs a strong hit to crack
+
+When the Blue Bird hits the block, we check:
+1. What kind of block it is
+2. How strong the collision was
+3. Whether that hit was hard enough to cause damage
+
+This makes every bird–block interaction feel unique and satisfying.
+
+---
+
+#### How It Works Under the Hood
+
+Here’s the basic flow:
+
+1. **Get Collision Info**
+   - We grab data from Box2D (using the `b2WorldManifold`) to understand where and how the collision happened.
+
+2. **Check the Block’s Type**
+   - Based on whether it's made of **wood, glass, or stone**, we apply a different damage threshold and multiplier.
+
+3. **Apply Damage**
+   - If the collision impulse is big enough:
+     - We calculate how much damage to apply.
+     - If that damage is greater than the block’s remaining health, we reduce its life or destroy it.
+     - For fragile materials like glass, even small impacts can be devastating.
+
+---
+
+### 💻 Sample Code: Bird–Block Collision Handling
+![image](https://github.com/user-attachments/assets/82e7438e-d0c2-4a12-bc92-313aa2a3f884) ![image](https://github.com/user-attachments/assets/86cddf86-e9f3-4fbf-aa9d-0bff70640f44)
+
+
+
+
+### 🎯 Why This Matters
+
+This system makes the game feel more realistic and fun. Instead of every block behaving the same way, the **material type** and **impact strength** really affect the outcome. A bird might bounce off a stone wall, but completely shatter a glass one.
+
