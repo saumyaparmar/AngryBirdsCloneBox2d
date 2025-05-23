@@ -166,7 +166,7 @@ When two objects collide, Box2D handles the physics and gives us detailed inform
 
 ---
 
-#### 📊 Using Impulse to Calculate Damage
+### 📊 Using Impulse to Calculate Damage
 
 One of the most important things Box2D gives us during a collision is the **normal impulse** — basically, how hard two objects hit each other.
 
@@ -178,7 +178,7 @@ But it’s the **normal impulse** that really matters when it comes to applying 
 
 ---
 
-#### 🟦 Example: Blue Bird Hits a Block
+### 🟦 Example: Blue Bird Hits a Block
 
 Let’s walk through a common scenario: a **Blue Bird** hits a **block**. Different block types take damage differently:
 - **Glass** breaks easily, so it has a **high damage multiplier**
@@ -194,7 +194,7 @@ This makes every bird–block interaction feel unique and satisfying.
 
 ---
 
-#### 🛠️ How It Works Under the Hood
+### 🛠️ How It Works Under the Hood
 
 Here’s the basic flow:
 
