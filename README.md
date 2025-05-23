@@ -271,7 +271,7 @@ Here are the physics properties used:
 - **Initial Speed Multiplier:** `100.0f` (used to calculate launch velocity from slingshot)
 
 #### Demo:
-![RedBirdCut-ezgif com-crop](https://github.com/user-attachments/assets/09017f4f-9bb1-45a1-a7c0-44b41f9dcc92)
+![RedBirdGif](https://github.com/user-attachments/assets/8ed4ed8c-aeb8-4092-bad3-6368da22e20e)
 
 #### 💛 (2) Yellow Bird
 The Yellow Bird is built for speed. It has a moderate density and friction, but what sets it apart is its dash ability. When activated mid-air, it quickly accelerates forward, making it perfect for smashing through wood. Its default speed is already high, and the dash gives it an extra velocity boost.
