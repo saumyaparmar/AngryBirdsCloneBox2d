@@ -276,7 +276,7 @@ Here are the physics properties used:
 #### 💛 (2) Yellow Bird
 The Yellow Bird is built for speed. It has a moderate density and friction, but what sets it apart is its dash ability. When activated mid-air, it quickly accelerates forward, making it perfect for smashing through wood. Its default speed is already high, and the dash gives it an extra velocity boost.
 
-Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+Here are the physics properties used (_These values are arbitrary, applied based on what gives a better feel, based on rigorous testing_):
 
 - **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
 - **Shape:** `b2CircleShape` centered on the sprite
@@ -299,7 +299,7 @@ Sample Code for Special Ability:
 The Blue Bird is small and lightweight, with lower density and a smaller radius. Its unique ability allows it to split into three smaller birds mid-air when the special action is triggered. This makes it ideal for taking down fragile structures like glass by spreading impact across multiple points.
 I add a damage multiplier when collided with a glass object, as explained in [Collisions in Box2D](#b-collisions-in-box2d)
 
-Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+Here are the physics properties used (_These values are arbitrary, applied based on what gives a better feel, based on rigorous testing_):
 
 - **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
 - **Shape:** `b2CircleShape` centered on the sprite
@@ -329,7 +329,7 @@ Sample code for Special Ability:
 #### 💣 (4) Black Bird
 The Black Bird is all about power. Slower but heavier, it causes massive damage on impact. Its special ability triggers an explosion, perfect for destroying strong materials like stone.
 
-Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+Here are the physics properties used (_These values are arbitrary, applied based on what gives a better feel, based on rigorous testing_):
 
 - **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
 - **Shape:** `b2CircleShape` centered on the sprite
@@ -359,7 +359,7 @@ Sample Code for Emitting Bomb Particles with Smoke:
 #### ⚪ (5) White Bird
 The White Bird is designed to attack from above by dropping an explosive egg directly below its flight path. When the special ability is triggered, it releases the egg mid-air and then changes color to indicate the ability has been used. 
 
-Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+Here are the physics properties used (_These values are arbitrary, applied based on what gives a better feel, based on rigorous testing_):
 
 - **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
 - **Shape:** `b2CircleShape` centered on the sprite
@@ -388,7 +388,7 @@ Sample Code for White Bird Special Ability:
 #### 🟢 (6) Green Bird
 The Green Bird is unique for its boomerang-like behavior. Unlike other birds, it doesn't just fly straight—it can reverse direction mid-air. This allows it to curve back toward targets, especially useful for hitting hard-to-reach places from behind.
 
-Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+Here are the physics properties used (_These values are arbitrary, applied based on what gives a better feel, based on rigorous testing_):
 
 - **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
 - **Shape:** `b2CircleShape` centered on the sprite
