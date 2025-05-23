@@ -276,7 +276,7 @@ Here are the physics properties used:
 #### 💛 (2) Yellow Bird
 The Yellow Bird is built for speed. It has a moderate density and friction, but what sets it apart is its dash ability. When activated mid-air, it quickly accelerates forward, making it perfect for smashing through wood. Its default speed is already high, and the dash gives it an extra velocity boost.
 
-Here are the physics properties used:
+Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
 
 - **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
 - **Shape:** `b2CircleShape` centered on the sprite
@@ -299,7 +299,7 @@ Sample Code for Special Ability:
 The Blue Bird is small and lightweight, with lower density and a smaller radius. Its unique ability allows it to split into three smaller birds mid-air when the special action is triggered. This makes it ideal for taking down fragile structures like glass by spreading impact across multiple points.
 I add a damage multiplier when collided with a glass object, as explained in [Collisions in Box2D](#b-collisions-in-box2d)
 
-Here are the physics properties used:
+Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
 
 - **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
 - **Shape:** `b2CircleShape` centered on the sprite
@@ -324,4 +324,33 @@ Sample code for Special Ability:
 #### Demo:
 
 ![BlueBirdGif](https://github.com/user-attachments/assets/87d3c850-0ae1-44d7-b775-0a742761fca8)
+
+
+#### 💣 (4) Black Bird
+The Black Bird is all about power. Slower but heavier, it causes massive damage on impact. Its special ability triggers an explosion, perfect for destroying strong materials like stone.
+
+Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+
+- **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
+- **Shape:** `b2CircleShape` centered on the sprite
+- **Radius:** Matches the visual size of the bird, converted from pixels to meters
+- **Density:** `5.0f` (affects mass)
+- **Friction:** `0.3f` (surface interaction)
+- **Restitution:** `0.3f` (controls bounciness)
+- **Initial Speed Multiplier:** `120.0f` (used to calculate launch velocity from slingshot)
+  
+#### Special Ability:
+Here’s how the Black Bird’s ability works:
+
+- When activated, it spawns a **bomb particle emitter** (details covered in the particle section).
+- Over **100 small explosive particles** are released with force, damaging everything in their path (shown in DEMO).
+- Special Ability, can be activated on command or when it collided the bird changes color and in the end explodes.
+
+This makes the Black Bird perfect for clearing out dense, reinforced structures.
+
+Sample Code for Emitting Bomb Particles with Smoke:
+![image](https://github.com/user-attachments/assets/5b8a8cd6-05ac-4027-b418-1dffe829478c)
+
+#### DEMO:
+![BlackBirdGif](https://github.com/user-attachments/assets/50c7fafd-a276-4bbc-bbfd-4d6e0980e9d6)
 
