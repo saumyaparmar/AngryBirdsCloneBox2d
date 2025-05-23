@@ -33,12 +33,12 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
 -  **Right-Click** – Activate the bird’s **special ability** mid-air.  
 - **Press 1–6** -  Load levels with different birds:  
 
-  &nbsp;&nbsp;&nbsp;&nbsp;1. 🟥 Red Bird 
-  &nbsp;&nbsp;&nbsp;&nbsp;2. 💛 Yellow Bird
-  &nbsp;&nbsp;&nbsp;&nbsp;3. 🔵 Blue Bird
-  &nbsp;&nbsp;&nbsp;&nbsp;4. ⚫ Black Bird 
-  &nbsp;&nbsp;&nbsp;&nbsp;5. ⚪ White Bird 
-  &nbsp;&nbsp;&nbsp;&nbsp;6. 🟢 Green Bird
+  &nbsp;&nbsp;&nbsp;&nbsp; 1. 🟥 Red Bird 
+  &nbsp;&nbsp;&nbsp;&nbsp; 2. 💛 Yellow Bird
+  &nbsp;&nbsp;&nbsp;&nbsp; 3. 🔵 Blue Bird
+  &nbsp;&nbsp;&nbsp;&nbsp; 4. ⚫ Black Bird 
+  &nbsp;&nbsp;&nbsp;&nbsp; 5. ⚪ White Bird 
+  &nbsp;&nbsp;&nbsp;&nbsp; 6. 🟢 Green Bird
   
 -  **Press the same number again** to **restart** the current level.
 -  **Toggle Debug Mode** – Press **P** to enable and **L** to disable debug mode.
