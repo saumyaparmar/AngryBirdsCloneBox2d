@@ -343,7 +343,7 @@ Here are the physics properties used (These values are arbitrary, applied based 
 Here’s how the Black Bird’s ability works:
 
 - When activated, it spawns a **bomb particle emitter** (details covered in the particle section).
-- Over **100 small explosive particles** are released with force, damaging everything in their path (shown in DEMO).
+- Over **100 small explosive particles** are released with force, damaging everything in their path (visualize in the DEMO).
 - Special Ability, can be activated on command or when it collided the bird changes color and in the end explodes.
 
 This makes the Black Bird perfect for clearing out dense, reinforced structures.
@@ -353,4 +353,34 @@ Sample Code for Emitting Bomb Particles with Smoke:
 
 #### DEMO:
 ![BlackBirdGif](https://github.com/user-attachments/assets/50c7fafd-a276-4bbc-bbfd-4d6e0980e9d6)
+
+
+
+#### ⚪ (5) White Bird
+The White Bird is designed to attack from above by dropping an explosive egg directly below its flight path. When the special ability is triggered, it releases the egg mid-air and then changes color to indicate the ability has been used. 
+
+Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+
+- **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
+- **Shape:** `b2CircleShape` centered on the sprite
+- **Radius:** Matches the visual size of the bird, converted from pixels to meters
+- **Density:** `5.0f` (affects mass)
+- **Friction:** `0.3f` (surface interaction)
+- **Restitution:** `0.3f` (controls bounciness)
+- **Initial Speed Multiplier:** `210.0f` (used to calculate launch velocity from slingshot)
+  
+#### Special Ability:
+Here’s how the White Bird’s ability works:
+
+- On activation, the White Bird spawns an **egg** directly beneath it.
+- The bird receives a rapid **upward impulse**, making it fly.
+- The egg behaves like a black bird: when it **collides**, it **explodes**.
+- Over **100 explosive particles** are generated, scattering with force and dealing area damage to nearby objects (visualized in the DEMO).
+
+Sample Code for White Bird Special Ability:
+![image](https://github.com/user-attachments/assets/ae87235c-2464-47fb-a6b3-c7fbacebec36)
+
+#### DEMO:
+
+![WhiteBirdGif](https://github.com/user-attachments/assets/dc6d968b-26ce-4d5b-b269-6dbf96cc9f1f)
 
