@@ -384,3 +384,33 @@ Sample Code for White Bird Special Ability:
 
 ![WhiteBirdGif](https://github.com/user-attachments/assets/dc6d968b-26ce-4d5b-b269-6dbf96cc9f1f)
 
+
+#### 🟢 (6) Green Bird
+The Green Bird is unique for its boomerang-like behavior. Unlike other birds, it doesn't just fly straight—it can reverse direction mid-air. This allows it to curve back toward targets, especially useful for hitting hard-to-reach places from behind.
+
+Here are the physics properties used (These values are arbitrary, applied based on what gives a better feel, based on rigorous testing):
+
+- **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
+- **Shape:** `b2CircleShape` centered on the sprite
+- **Radius:** Matches the visual size of the bird, converted from pixels to meters
+- **Density:** `5.0f` (affects mass)
+- **Friction:** `0.3f` (surface interaction)
+- **Restitution:** `0.3f` (controls bounciness)
+- **Initial Speed Multiplier:** `150.0f` (used to calculate launch velocity from slingshot)
+  
+#### Special Ability:
+Here’s how the Green Bird’s ability works:
+
+- On activation, the Green Bird will start moving like a boomerang.
+- A **force vector** `(-35.0f, -8.0f)` is applied, scaled by the bird’s mass, creating a sudden shift in direction, making it go in opposite direction of it movement.
+- At the same time, the bird’s angle is **manually rotated** backward by `0.15 radians` to enhance the turning effect.
+
+Sample Code for Green Bird Special Ability (This is applied in the update function, so changing it velocity gradually):
+![image](https://github.com/user-attachments/assets/abd2e896-04f3-4c57-adf4-d8719f1e22c8)
+
+
+#### Demo:
+
+
+
+
