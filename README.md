@@ -33,7 +33,7 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
 -  **Right-Click** – Activate the bird’s **special ability** mid-air.  
 - **Press 1–6** -  Load levels with different birds:  
 
-  &nbsp;&nbsp;&nbsp;&nbsp; 1. 🟥 Red Bird 
+  &nbsp;&nbsp;&nbsp;1. 🟥 Red Bird 
   &nbsp;&nbsp;&nbsp;&nbsp; 2. 💛 Yellow Bird
   &nbsp;&nbsp;&nbsp;&nbsp; 3. 🔵 Blue Bird
   &nbsp;&nbsp;&nbsp;&nbsp; 4. ⚫ Black Bird 
