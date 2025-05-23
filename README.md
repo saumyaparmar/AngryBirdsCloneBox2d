@@ -6,6 +6,8 @@ This is a clone of the Angry Birds game, built using the Box2D 2.3.2 physics eng
 The game runs on a custom 2D engine developed by my professor, which provides support for sprite rendering, debug wireframe drawing, and camera functionality. Sound integration is handled using irrKlang. 
 The game is designed for a resolution of 1280x720; fullscreen mode is not supported due to input positioning issues.
 
+[YOUTUBE LINK TO DEMO](https://youtu.be/xsb5FvlC20Y?si=l9ea08X28Ov2CajR)
+
 ## 🎮 Game Highlights 🎮
 1. 🐦 **Birds with Unique Abilities**  
    Each bird has a special ability (e.g., acceleration, splitting, explosion, etc.).
@@ -31,12 +33,12 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
 -  **Right-Click** – Activate the bird’s **special ability** mid-air.  
 - **Press 1–6** -  Load levels with different birds:  
 
-  &nbsp;&nbsp;&nbsp;&nbsp;1. 🟥 Red  
-  &nbsp;&nbsp;&nbsp;&nbsp;2. 💛 Yellow  
-  &nbsp;&nbsp;&nbsp;&nbsp;3. 🔵 Blue  
-  &nbsp;&nbsp;&nbsp;&nbsp;4. ⚫ Black  
-  &nbsp;&nbsp;&nbsp;&nbsp;5. ⚪ White  
-  &nbsp;&nbsp;&nbsp;&nbsp;6. 🟢 Green
+  &nbsp;&nbsp;&nbsp;&nbsp;1. 🟥 Red Bird 
+  &nbsp;&nbsp;&nbsp;&nbsp;2. 💛 Yellow Bird
+  &nbsp;&nbsp;&nbsp;&nbsp;3. 🔵 Blue Bird
+  &nbsp;&nbsp;&nbsp;&nbsp;4. ⚫ Black Bird 
+  &nbsp;&nbsp;&nbsp;&nbsp;5. ⚪ White Bird 
+  &nbsp;&nbsp;&nbsp;&nbsp;6. 🟢 Green Bird
   
 -  **Press the same number again** to **restart** the current level.
 -  **Toggle Debug Mode** – Press **P** to enable and **L** to disable debug mode.
@@ -54,7 +56,7 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
 
 1. Physics
    - [Box2D](#a-box2d)
-   - [Collisions in Box2d](#b-collisions-in-box2d)
+   - [Collisions in Box2D](#b-collisions-in-box2d)
    - [Birds](#c-birds)
    - [Particles](#particles)
 
@@ -284,13 +286,42 @@ Here are the physics properties used:
 - **Restitution:** `0.3f` (controls bounciness)
 - **Initial Speed Multiplier:** `270.0f` (used to calculate launch velocity from slingshot)
 
-
+#### Special Ability:
 For special ability of this bird, I apply an addtional linear impulse.
 
 Sample Code for Special Ability:
 ![image](https://github.com/user-attachments/assets/96ecd763-40b0-4454-b0ac-9a4e25efcbc6)
 
 #### Demo:
-![YellowBirdCut-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/fe19cdfc-1ca8-4f2a-a1db-1b4cc0ac539a)
+![YellowBirdGif](https://github.com/user-attachments/assets/fe19cdfc-1ca8-4f2a-a1db-1b4cc0ac539a)
 
+#### 🔵 (3) Blue Bird  
+The Blue Bird is small and lightweight, with lower density and a smaller radius. Its unique ability allows it to split into three smaller birds mid-air when the special action is triggered. This makes it ideal for taking down fragile structures like glass by spreading impact across multiple points.
+I add a damage multiplier when collided with a glass object, as explained in [Collisions in Box2D](#b-collisions-in-box2d)
+
+Here are the physics properties used:
+
+- **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
+- **Shape:** `b2CircleShape` centered on the sprite
+- **Radius:** Matches the visual size of the bird, converted from pixels to meters
+- **Density:** `5.0f` (affects mass)
+- **Friction:** `0.3f` (surface interaction)
+- **Restitution:** `0.3f` (controls bounciness)
+- **Initial Speed Multiplier:** `35.0f` (used to calculate launch velocity from slingshot)
+
+#### Special Ability:
+Here's how it works:
+- I spawn **two additional Blue Birds**, one slightly above and one slightly below the original.
+- All three birds are given the **same linear velocity**, so they continue flying in the same forward direction.
+- To achieve the spread effect, I apply a **linear impulse** to the two new birds in **opposite vertical directions**—one upwards and one downwards.
+- I also flag each new bird with `isSpecialAbilityDone = true` to ensure the special action doesn’t trigger again.
+- Their state is set to `LAUNCHED`, and a debug color is assigned to help distinguish them visually during testing.
+
+Sample code for Special Ability:
+![image](https://github.com/user-attachments/assets/56fbef81-d959-438b-b275-ad0aa6a0ee75)
+
+
+#### Demo:
+
+![BlueBirdGif](https://github.com/user-attachments/assets/87d3c850-0ae1-44d7-b775-0a742761fca8)
 
