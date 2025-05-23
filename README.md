@@ -267,7 +267,30 @@ Here are the physics properties used:
 - **Friction:** `0.3f` (surface interaction)
 - **Restitution:** `0.3f` (controls bounciness)
 - **Initial Speed Multiplier:** `100.0f` (used to calculate launch velocity from slingshot)
+
+#### Demo:
 ![RedBirdCut-ezgif com-crop](https://github.com/user-attachments/assets/09017f4f-9bb1-45a1-a7c0-44b41f9dcc92)
 
+#### 💛 (2) Yellow Bird
+The Yellow Bird is built for speed. It has a moderate density and friction, but what sets it apart is its dash ability. When activated mid-air, it quickly accelerates forward, making it perfect for smashing through wood. Its default speed is already high, and the dash gives it an extra velocity boost.
+
+Here are the physics properties used:
+
+- **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
+- **Shape:** `b2CircleShape` centered on the sprite
+- **Radius:** Matches the visual size of the bird, converted from pixels to meters
+- **Density:** `12.0f` (affects mass)
+- **Friction:** `0.3f` (surface interaction)
+- **Restitution:** `0.3f` (controls bounciness)
+- **Initial Speed Multiplier:** `270.0f` (used to calculate launch velocity from slingshot)
+
+
+For special ability of this bird, I apply an addtional linear impulse.
+
+Sample Code for Special Ability:
+![image](https://github.com/user-attachments/assets/96ecd763-40b0-4454-b0ac-9a4e25efcbc6)
+
+#### Demo:
+![YellowBirdCut-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/fe19cdfc-1ca8-4f2a-a1db-1b4cc0ac539a)
 
 
