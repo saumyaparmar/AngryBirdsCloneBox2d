@@ -238,3 +238,36 @@ Why use a multiplier? Because birds differ in size and weight. Even though the d
 Here’s a sample code for the force applied when bird is launched:
 ![image](https://github.com/user-attachments/assets/8a4c202f-5a7d-479f-a46e-aad9d4e0c599)
 
+### Birds Overview
+Every bird in the game needs to be defined with a few key physical properties: its **shape**, **speed**, and **size**. These factors directly influence how much **force** the bird applies when it collides with other objects like blocks or pigs.
+
+I use Box2D to set up the physics body for each bird with the following components:
+
+- A **dynamic body** – so the bird responds to forces like gravity and collisions.
+- A **b2CircleShape** – representing the bird’s circular collision boundary.
+- **Density** – which affects the bird's mass.
+- **Friction** – determining how much it slides along surfaces.
+- **Restitution** – controlling how bouncy the bird is on impact.
+
+Together, these elements make sure each bird behaves differently based on its physical profile—giving a sense of weight, momentum, and realism during gameplay.
+
+Here is a sample code for setting up the physics body of any bird:
+![image](https://github.com/user-attachments/assets/702206b5-40d5-4459-ab53-4bd1b26db5f0)
+
+
+#### 🟥 (1) Red Bird
+
+The Red Bird is the simplest of all—it doesn't have any special abilities. You just launch it and let physics do the rest.
+Here are the physics properties used:
+
+- **Body Type:** `b2_dynamicBody` (affected by gravity and forces)
+- **Shape:** `b2CircleShape` centered on the sprite
+- **Radius:** Matches the visual size of the bird, converted from pixels to meters
+- **Density:** `10.0f` (affects mass)
+- **Friction:** `0.3f` (surface interaction)
+- **Restitution:** `0.3f` (controls bounciness)
+- **Initial Speed Multiplier:** `100.0f` (used to calculate launch velocity from slingshot)
+![RedBirdCut-ezgif com-crop](https://github.com/user-attachments/assets/09017f4f-9bb1-45a1-a7c0-44b41f9dcc92)
+
+
+
