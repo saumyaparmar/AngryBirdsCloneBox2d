@@ -55,7 +55,7 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
 1. Physics
    - [Box2D](#a-box2d)
    - [Collisions in Box2d](#b-collisions-in-box2d)
-   - [Birds](#birds)
+   - [Birds](#c-birds)
    - [Particles](#particles)
 
 ---
@@ -221,4 +221,20 @@ Here’s the basic flow:
 ### 🎯 Why This Matters
 
 This system makes the game feel more realistic and fun. Instead of every block behaving the same way, the **material type** and **impact strength** really affect the outcome. A bird might bounce off a stone wall, but completely shatter a glass one.
+
+
+## (c) Birds
+
+In this project, I’ve included **six different birds**, each with their own unique ability. But before I jump into their individual powers, I want to explain how the **slingshot** works—since every bird’s flight starts from there.
+
+### 🏹 How the Slingshot Works
+
+1. I store the **starting position** of the slingshot.
+2. When the player drags the bird, I calculate the vector between the current bird position and the slingshot’s starting point.
+3. I **normalize** this vector (to get just the direction).
+4. Then, I multiply it by the bird’s **individual speed multiplier** to control how fast that bird launches.
+Why use a multiplier? Because birds differ in size and weight. Even though the distance pulled is the same for every bird, the resulting speed needs to vary to reflect their physics correctly. The multiplier makes sure the launch feels balanced for each bird.
+
+Here’s a sample code for the force applied when bird is launched:
+![image](https://github.com/user-attachments/assets/8a4c202f-5a7d-479f-a46e-aad9d4e0c599)
 
