@@ -57,7 +57,7 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
    - [Box2D](#a-box2d)
    - [Collisions in Box2D](#b-collisions-in-box2d)
    - [Birds](#c-birds)
-   - [Particles](#particles)
+   - [Particles](#d-particles)
 
 ---
 
@@ -411,6 +411,98 @@ Sample Code for Green Bird Special Ability (This is applied in the update functi
 #### Demo:
 
 ![GreenBirdGif](https://github.com/user-attachments/assets/115d027b-e681-4c8a-a34f-8d5a6a052d00)
+
+
+## (d) Particles
+
+Particles in the game refer to visual effects like smoke trails, block destruction debris, feathers, and bomb explosions. This section explains the basic structure and behavior of different types of particles, focusing on **feathers**, **bomb particles**, and **smoke trails**.
+
+### 🔧 Particle System Structure
+
+The particle system is built around two main components:
+
+1. **Particle**  
+   Each particle has:
+   - A sprite for visual appearance
+   - A `maxLifetime` which defines how long it stays active
+   - A physics body with properties like size, velocity, and sometimes mass or density
+   - Behavior that depends on its type (e.g., feathers float, bomb particles exert force)
+
+2. **Particle Emitter**  
+   Acts as a factory that spawns particles at a given location (`Transform`). It can generate one or many particles and can vary the sprite or behavior based on the type of effect being created.
+
+### 🪶 Feather Particles
+
+Feather particles are spawned when birds collide or get destroyed. They're designed for lightweight visual effects and have the following properties:
+
+- **Zero Density**: No need for mass, since they dont need to effect other objects.
+- **No Gravity**: They float without falling.
+- **No Rotation**: Fixed rotation gives a stable visual.
+- **Low Drag**: Simulates smooth, air-like movement.
+- **No Collisions**: Marked as sensors so they don’t affect physics.
+- **Small Size**: Radius is minimal for subtlety.
+- **Short Lifespan**: They disappear quickly to keep things performant.
+
+Feather particles are purely aesthetic and don’t interact with the environment physically—they just spread in a small radius and fade out over time.
+
+#### 🌀 Feather Particle Emitter (Randomization)
+
+To make feather particles look natural, I randomize key properties when spawning them:
+
+- **Position:** Slight offset in X and Y to spread particles outward.
+- **Angle:** Each particle gets a random rotation.
+- **Lifetime:** Particles live for a short, varied time.
+- **Angular Velocity:** Adds random spin to each feather.
+
+This makes the feathers feel scattered and dynamic.
+
+Here is the sample Code for Feather Emitter randomly spawning feathers:
+
+![image](https://github.com/user-attachments/assets/737a55df-fbee-471e-aac3-4510c804ef35)
+
+
+
+### 💣 Bomb Particles
+
+Bomb particles are similar to feathers but behave very differently due to their **physical properties**:
+
+- **Higher Density:** Gives them mass, allowing them to impact and push objects on contact.
+- **Increased Restitution:** Makes them bounce on impact, mimicking explosive scatter.
+- **Physics-Driven:** Unlike feathers, bomb particles affect the environment—knocking over blocks or damaging structures.
+
+These are used in special abilities like the **Black** or **White Bird** explosions to simulate destructive force.
+
+#### 💥 Radial Bomb Particle Emission
+
+When bomb particles are spawned (e.g., during the **Black Bird** explosion), I emit them in **all 360° direction** using a radial force system:
+
+- Each particle is given a **direction vector** based on its angle in a full circle (`0°–360°`).
+- A constant **strength** value (e.g., `30.0f`) controls the magnitude of the force.
+- All particles are evenly spaced in direction but move outward with the same speed, creating a uniform explosive effect.
+
+Here is the sample Code for Bomb Emitter spawning bomb particles:
+
+![image](https://github.com/user-attachments/assets/7f706126-175f-4de2-8f72-55e1369d466c)
+
+---
+### 💨 Smoke Trails
+
+Smoke trails are visual markers that follow birds during their flight, used to show the path taken through the air. Unlike other particles, they don’t interact with physics and are purely for visual feedback.
+
+- **No Physics Body**: Trails are non-collidable and don't affect gameplay.
+- **Long Lifespan**: Each trail has a large lifetime, so it stays visible in the scene until explicitly removed.
+- **Bird-Exclusive**: Each trail is tied to a single bird.
+- **Managed with a Trail Manager**: I maintain exactly **two trails** at any time using a simple queue logic.
+
+#### Behavior:
+- A new smoke trail is spawned **every time the bird travels a certain distance** after launch.
+- When a new bird is launched, the previous trail remains until the new bird collides.
+- Each **trail instance smoke** is recorded in a **trail linked list**, so I can delete the whole trail when the next bird collides.
+- The system ensures a clean and minimal visual trail history, always limited to two.
+
+
+
+#### Smoke particles work much like feather particles but use different sprites. They appear for visual effects such as when a pig is killed or to signal explosions, like those from the black bird or the egg blast.
 
 
 
