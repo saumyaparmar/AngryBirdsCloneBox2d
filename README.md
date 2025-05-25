@@ -4,7 +4,7 @@
 This is a clone of the Angry Birds game, built using the Box2D 2.3.2 physics engine and developed in C++. The project replicates the core gameplay mechanics and physics behavior of the original game as closely as possible. It was created as part of an independent study project for my graduate program.
 
 The game runs on a custom 2D engine developed by my professor, which provides support for sprite rendering, debug wireframe drawing, and camera functionality. Sound integration is handled using irrKlang. 
-The game is designed for a resolution of 1280x720; fullscreen mode is not supported due to input positioning issues.
+The game is designed for a resolution of 1280x720; fullscreen mode is not supported due to input positioning issues. Debug Mode in the game, depicts how the physics bodies really look and how they react to each other.
 
 [YOUTUBE LINK TO DEMO](https://youtu.be/xsb5FvlC20Y?si=l9ea08X28Ov2CajR)
 
@@ -381,7 +381,7 @@ Sample Code for White Bird Special Ability:
 
 #### DEMO:
 
-![WhiteBirdGif](https://github.com/user-attachments/assets/dc6d968b-26ce-4d5b-b269-6dbf96cc9f1f)
+![WhiteBirdGif2](https://github.com/user-attachments/assets/6623b56c-5a07-4739-9f0c-da9571ae3038)
 
 
 #### 🟢 (6) Green Bird
@@ -410,6 +410,7 @@ Sample Code for Green Bird Special Ability (This is applied in the update functi
 
 #### Demo:
 
+![GreenBirdGif](https://github.com/user-attachments/assets/115d027b-e681-4c8a-a34f-8d5a6a052d00)
 
 
 
