@@ -485,9 +485,9 @@ Here is the sample Code for Bomb Emitter spawning bomb particles:
 ![image](https://github.com/user-attachments/assets/7f706126-175f-4de2-8f72-55e1369d466c)
 
 ---
-### 💨 Smoke Trails
+### 💨 Bird Smoke Trails
 
-Smoke trails are visual markers that follow birds during their flight, used to show the path taken through the air. Unlike other particles, they don’t interact with physics and are purely for visual feedback.
+Bird Smoke trails are visual markers that follow birds during their flight, used to show the path taken through the air. Unlike other particles, they don’t interact with physics and are purely for visual feedback.
 
 - **No Physics Body**: Trails are non-collidable and don't affect gameplay.
 - **Long Lifespan**: Each trail has a large lifetime, so it stays visible in the scene until explicitly removed.
@@ -502,7 +502,7 @@ Smoke trails are visual markers that follow birds during their flight, used to s
 
 
 
-#### Smoke particles work much like feather particles but use different sprites. They appear for visual effects such as when a pig is killed or to signal explosions, like those from the black bird or the egg blast.
+#### Simple smoke particles work much like feather particles but use different sprites. They appear for visual effects such as when a pig is killed or to signal explosions, like those from the black bird or the egg blast.
 
 
 
