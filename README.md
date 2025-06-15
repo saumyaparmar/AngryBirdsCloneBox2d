@@ -568,6 +568,7 @@ To keep my game modular, maintainable, and efficient, I’ve implemented several
 
 **Why I use it:**  
 Each manager needs to exist only once during the game’s lifetime. The Singleton pattern gives me a global and consistent way to access systems like texture loading, sprite updates, and event handling — without worrying about duplicate instances.
+
 ---
 
 ### 2. 🔁 Object Pooling
