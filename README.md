@@ -628,5 +628,5 @@ Each GameObject implements an Accept method and passes in the colliding object a
 These patterns work together to give me a clean, reliable architecture. The goal is always to keep systems decoupled, code reusable, and performance predictable — especially for a physics-heavy game like Angry Birds.
 
 
-### So this is just giving you the gist of all the patterns that I have used for various elements of the game. I won't be able to explain everything in this document, but hope this will give you the basic gist of my code architecture.
+#### This is just me giving you the gist of all the patterns that I have used for various elements of the game. I won't be able to explain everything in this document, but hope this will make you understand the basics of my code architecture.
 
