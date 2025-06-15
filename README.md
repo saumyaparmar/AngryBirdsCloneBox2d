@@ -48,7 +48,7 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
 
 - The first part covers the physics behind the Angry Birds components, including collisions, bird abilities, particles, and related concepts.
 
-- The second part provides a brief overview of the code architecture used in creating this demo.
+- The second part provides a brief overview of the mainly gameobject code architecture used in creating this demo.
 
 
 ## 📘 Index
@@ -58,8 +58,7 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
    - [Collisions in Box2D](#b-collisions-in-box2d)
    - [Birds](#c-birds)
    - [Particles](#d-particles)
-2. Code Architecture
-   - [Managers](managers) 
+2. [Code Architecture](#Code-Architecture)
 ---
 
 # 🤓 PHYSICS OF ANGRY BIRDS 🤓
@@ -512,13 +511,122 @@ I’ll start by giving an overview of my approach, breaking down the architectur
 
 To help make things clearer, I’ll include UML diagrams and some sample code snippets to illustrate the logic.
 
-## (a) Managers (Object Pooling)
+## 🎨 Sprite Rendering Architecture
+
+Our engine draws 2D sprites using three main components: **textures**, **images**, and **sprites**, all managed by dedicated systems.
+
+### Key Components:
+
+1.  **Textures:** Full sprite sheets loaded into memory. Managed by a **Texture Manager**.
+2.  **Images:** Defined regions (cut-offs) from textures (e.g., `greenbird_idle`). Managed by an **Image Manager**.
+3.  **Sprites:** Visual objects combining an **Image** reference with rendering properties (position, angle, scale). Managed by a **Sprite Node Manager**.
+
+### Sprite Class Hierarchy:
+
+* **`SpriteBase`:** The foundational class for all sprites.
+* **`SpriteGame`:** For in-game visuals (e.g., backgrounds). References an **Image**.
+* **`SpriteDebugBase`:** Base for debug visualization sprites (e.g., wireframes).
+    * **`SpriteDebugClass`es:** Specific shapes like `DebugCircle`, `DebugBox` for physics body visualization.
+
+All sprite types are managed by the **Sprite Node Manager**.
+
+![image](https://github.com/user-attachments/assets/ef8c324a-95df-40c8-a319-025e68e21fe8)
+
+
+## 🎮 Game Object Architecture
+
+Game objects populate the world, differentiated by whether they interact with physics or are static props.
+
+### Game Object Hierarchy:
+
+* **`GameObjectBase`:** Base class for all objects. Points to a **`SpriteGame`** for visuals. Used for static props (e.g., backgrounds).
+* **`GameObjectPhysics`:** Derived from `GameObjectBase` for physics-enabled objects. Includes a **`SpriteDebug`** reference to visualize its physics body (e.g., Box2D). Specific physics behaviors are handled in derived classes like `Bird_Red`.
+
+### Game Object Management:
+
+* **`GameObjectNode`:** Wraps heterogeneous game objects for consistent management.
+* **`GameObjectManager`:** Central manager for creating, storing, and updating all game objects within the engine's main loop.
+
+### UML Diagram: Game Object Class Hierarchy
+![image](https://github.com/user-attachments/assets/f0143575-31e3-47ec-8ce0-a4fe1e9a00f2)
+
+## 🔒 Memory Management & Principles
+
+**Memory leakage prevention** is crucial. All components (Textures, Images, Sprites, Game Objects) are handled by dedicated **Managers**. These managers centralize loading, provide efficient access, and are responsible for proper memory cleanup when objects are removed, ensuring a stable and performant game.
 
 
 
+## 📐 Design Patterns Implemented
+
+To keep my game modular, maintainable, and efficient, I’ve implemented several classic design patterns. These help me manage complexity, improve performance, and organize responsibilities clearly across systems.
 
 
+### 1. 🧭 Singleton Pattern
+
+**Used in:**  
+- `TextureManager`, `ImageManager`, `SpriteNodeManager`, `GameObjectManager`, `TimerEventManager`, `SoundManager`, etc.
+
+**Why I use it:**  
+Each manager needs to exist only once during the game’s lifetime. The Singleton pattern gives me a global and consistent way to access systems like texture loading, sprite updates, and event handling — without worrying about duplicate instances.
+---
+
+### 2. 🔁 Object Pooling
+
+**Why I use it:**  
+Creating and destroying objects repeatedly is expensive. Instead, I reuse them from a pool. When an object (like a bird or a block piece) is no longer needed, I return it to the pool instead of deleting it. This improves performance, reduces memory overhead, and keeps the engine fast — especially during heavy scenes.
+
+---
+### 3. 🏭 Factory Pattern
+
+**Used in:**  
+- Spawning game objects like Birds, Blocks, and Pigs.
+
+**Why I use it:**  
+The Factory pattern lets me centralize and simplify the creation of complex GameObjects. I pass a type (like `"RedBird"` or `"Block_Wood"`), and the factory gives me the object with the correct physics, sprites, and behaviors. This keeps creation clean, consistent, and flexible for future additions.
+
+---
+
+### 4. 🎮 Command Pattern
+
+**Used in:**  
+- Timer Events  
+- Animation triggers  
+- Encapsulated game logic
+
+**Why I use it:**  
+Commands allow me to turn a specific action into an object — like “start animation” or “remove particle.” I can queue, delay, or cancel these actions easily without tightly coupling the logic. It also helps cleanly separate behavior across systems, like input, physics, and rendering.
+
+---
+
+### 5. ⏱️ Timer Event System
+
+**Used for:**  
+- Particle lifetime cleanup  
+- Delayed bird actions  
+- Time-based logic (e.g., exploding after a delay)
+
+**Why I use it:**  
+I use a timer event system to handle delayed logic. It schedules a command with a countdown. Once time runs out, the command executes.  
+For example:
+- A **trail** fades after flying a distance.
+- A **bomb bird** explodes after a delay.
+- A **feather particle** despawns after some time.
+
+This system helps me build dynamic, time-based behaviors without hardcoding delays or cluttering logic with timers everywhere.
+
+---
+### 6. 🧾 Visitor Pattern
+
+**Used in:**  
+- Collision handling between all GameObjects (Birds, Pigs, Blocks, etc.)
+
+**Why I use it:**  
+In a game like Angry Birds, many objects interact differently when they collide — a bird hitting a pig behaves differently than a pig hitting a block.  
+The Visitor Pattern helps me handle these collisions without messy `if`-else chains or type-checking everywhere.
+Each GameObject implements an Accept method and passes in the colliding object as a visitor. That visitor then calls the correct Visit method based on type.
+
+These patterns work together to give me a clean, reliable architecture. The goal is always to keep systems decoupled, code reusable, and performance predictable — especially for a physics-heavy game like Angry Birds.
 
 
-
+### So this is just giving you the gist of all the patterns that I have used for various elements of the game. I won't be able to explain everything in this document, but hope this will give you the basic gist of my code architecture.
 
