@@ -58,7 +58,7 @@ The game is designed for a resolution of 1280x720; fullscreen mode is not suppor
    - [Collisions in Box2D](#b-collisions-in-box2d)
    - [Birds](#c-birds)
    - [Particles](#d-particles)
-2. [Code Architecture](#Code-Architecture)
+2. Code Architecture
 ---
 
 # 🤓 PHYSICS OF ANGRY BIRDS 🤓
@@ -505,9 +505,9 @@ Bird Smoke trails are visual markers that follow birds during their flight, used
 
 # 👨‍💻 CODE ARCHITECTURE OF ANGRY BIRDS 👨‍💻
 
-The code architecture of this Angry Birds project is based on object-oriented principles. I won’t be able to dive into every single detail, but I’ll do my best to explain it as clearly as possible. This might get a bit tricky, so bear with me.
+The code architecture of this Angry Birds project is based on object-oriented principles. I won’t be able to dive into every single detail, but I’ll do my best to explain it as clearly as possible.
 
-I’ll start by giving an overview of my approach, breaking down the architecture into sections based on design patterns, and focusing on key objects like birds and blocks. I’ll also cover how timer events handle animations and deaths, explain the GameObject structure, and how I differentiate between physics bodies and simple props like backgrounds.
+I’ll start by giving an overview of my approach, breaking down the architecture into sections and focusing on key objects like birds and blocks. I’ll also cover mainly what design patterns that I have used and what purpose, explain the GameObject structure, and how I differentiate between physics bodies and simple props like backgrounds.
 
 To help make things clearer, I’ll include UML diagrams and some sample code snippets to illustrate the logic.
 
